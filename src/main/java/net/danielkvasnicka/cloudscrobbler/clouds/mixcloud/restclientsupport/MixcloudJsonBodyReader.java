@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.danielkvasnicka.cloudscrobbler.restclient;
+package net.danielkvasnicka.cloudscrobbler.clouds.mixcloud.restclientsupport;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;

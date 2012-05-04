@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.danielkvasnicka.cloudscrobbler.web;
-
-import javax.faces.bean.ManagedBean;
+package net.danielkvasnicka.cloudscrobbler.engine.api;
 
 /**
  *
  * @author daniel
  */
-@ManagedBean
-public class Index {
-    
+public interface Track {
+
+    String getArtist();
+
+    String getName();
 }
