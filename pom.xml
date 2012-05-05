@@ -47,10 +47,18 @@
         </dependency>
 
         <dependency>
-    	<groupId>org.mongodb</groupId>
-    	<artifactId>mongo-java-driver</artifactId>
-    	<version>2.7.3</version>
-    </dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>last.fm</groupId>
+            <artifactId>last.fm-bindings</artifactId>
+            <version>0.1.1</version>
+            <scope>system</scope>
+            <systemPath>${project.build.directory}/../src/main/webapp/WEB-INF/lib/last.fm-bindings-0.1.1.jar</systemPath>
+        </dependency>
     </dependencies>
     
     <build>
