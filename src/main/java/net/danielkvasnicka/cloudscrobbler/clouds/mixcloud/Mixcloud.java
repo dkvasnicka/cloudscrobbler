@@ -41,7 +41,7 @@ public class Mixcloud {
         ResteasyProviderFactory.getInstance().addMessageBodyReader(MixcloudJsonBodyReader.class);        
     }
 
-    @Schedule(minute = "*/1", hour = "*", persistent = false)
+    //@Schedule(minute = "*/1", hour = "*", persistent = false)
     public void test() throws Exception {        
         ClientRequest req = this.request.get();
         req.accept("text/javascript");
