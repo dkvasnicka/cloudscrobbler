@@ -4,6 +4,7 @@
  */
 package net.danielkvasnicka.cloudscrobbler.web;
 
+import de.umass.lastfm.Session;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -26,13 +27,20 @@ public class Settings {
     
     private Listener listener;
     
+    @Inject
+    private Session lastFmSession;
+    
     @PostConstruct
     public void initListener() {
-        this.listener = new Listener();
+        Listener savedListener = this.listenerRepository.findListener(this.lastFmSession.getKey());
+        this.listener = savedListener == null ? new Listener() : savedListener;
     }
     
-    public void save() {
-        
+    public void save() {        
+        String key = this.lastFmSession.getKey();
+        if (this.listener.getLastFmSessionKey() == null) {            
+            this.listener.setLastFmSessionKey(key);
+        }
         this.listenerRepository.saveListener(this.listener);
     }
     
@@ -41,10 +49,4 @@ public class Settings {
     public Listener getListener() {
         return listener;
     }
-
-    public void setListener(Listener listener) {
-        this.listener = listener;
-    }
-    
-    
 }

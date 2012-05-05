@@ -13,6 +13,7 @@ import net.danielkvasnicka.cloudscrobbler.web.auth.aop.LastFmSessionActive;
  */
 public interface ListenerRepository {
     
+    @LastFmSessionActive
     Listener findListener(String lastFmSessionKey);
     
     @LastFmSessionActive

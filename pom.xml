@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
+        <jackson.version>1.9.4</jackson.version>
     </properties>
     
     <dependencies>
@@ -40,6 +41,42 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
             <version>2.3.3.Final</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-core-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-jaxrs</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-xc</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-core-asl</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-jaxrs</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>jackson-xc</artifactId>
+            <groupId>org.codehaus.jackson</groupId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
