@@ -4,12 +4,16 @@
  */
 package net.danielkvasnicka.cloudscrobbler.listenermanagement.domain;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author daniel
  */
 public class Listener {
         
+    private ObjectId _id;
+    
     private boolean enableScrobbling;
     
     private String cloudId;
