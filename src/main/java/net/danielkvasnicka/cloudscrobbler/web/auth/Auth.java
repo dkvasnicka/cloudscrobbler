@@ -5,17 +5,17 @@
 package net.danielkvasnicka.cloudscrobbler.web.auth;
 
 import de.umass.lastfm.Session;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author daniel
  */
-@Named @Singleton
+@Named @RequestScoped
 public class Auth {
     
     @Inject
