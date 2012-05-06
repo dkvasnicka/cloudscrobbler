@@ -9,8 +9,6 @@ import java.lang.annotation.Annotation;
 import java.net.UnknownHostException;
 import java.util.Properties;
 import java.util.Set;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
