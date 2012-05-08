@@ -4,6 +4,7 @@
  */
 package net.danielkvasnicka.cloudscrobbler.clouds.mixcloud.domain;
 
+import java.util.Collections;
 import java.util.List;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -17,6 +18,10 @@ public class Listens {
     private List<Mix> data;
 
     public List<Mix> getData() {
+        if (this.data == null) {
+            this.data = Collections.EMPTY_LIST;
+        }
+        
         return data;
     }
 
