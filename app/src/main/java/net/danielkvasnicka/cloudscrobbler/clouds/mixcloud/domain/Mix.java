@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import net.danielkvasnicka.cloudscrobbler.engine.api.Track;
+import net.danielkvasnicka.cloudscrobbler.utils.Utils;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -30,7 +31,7 @@ public class Mix {
     }
 
     public Collection<Track> getTracks() {
-        
+        return (Collection<Track>) Utils.getOnlyTracksFromMixSections(this.sections);
     }
     
     public void setSections(List<MixSection> sections) {
