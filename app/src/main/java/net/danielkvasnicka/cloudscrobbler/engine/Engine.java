@@ -8,6 +8,7 @@ import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Observes;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
+import net.danielkvasnicka.cloudscrobbler.engine.api.Track;
 
 /**
  *
@@ -18,7 +19,9 @@ public class Engine {
 
     @Asynchronous
     public void scrobble(@Observes NewTracks event) {
-        System.out.println("class: " + this.hashCode());
-        System.out.println("--------- Got " + event);
+        
+        for (Track t : event.getNewTracks()) {
+            System.out.println(t.getName());
+        }
     }
 }

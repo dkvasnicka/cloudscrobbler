@@ -129,7 +129,7 @@
                         <manifestEntries>
                             <Dependencies>org.apache.httpcomponents</Dependencies>
                         </manifestEntries>
-                    </archive>
+                    </archive>                    
                 </configuration>
             </plugin>
         </plugins>
