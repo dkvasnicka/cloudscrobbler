@@ -10,9 +10,6 @@ import java.util.List;
 import net.danielkvasnicka.cloudscrobbler.engine.api.Track;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
-import static org.apache.commons.collections.CollectionUtils.*;
-import org.apache.commons.collections.Predicate;
-import org.apache.commons.collections.Transformer;
 
 /**
  *
