@@ -16,6 +16,8 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
 import net.danielkvasnicka.cloudscrobbler.utils.Utils;
+import org.jboss.solder.logging.Category;
+import org.jboss.solder.logging.Logger;
 import org.jboss.solder.resourceLoader.Resource;
 
 /**
@@ -29,14 +31,21 @@ public class Engine {
     @Resource("META-INF/lastfm.properties")
     private Properties lastFmCredentials;
 
-    @Asynchronous
+    @Inject @Category("Engine")
+    private Logger logger;
+
     public void scrobble(@Observes NewTracks event) {
         Session session = Authenticator.getSession(event.getLastFmSessionKey(),
                 this.lastFmCredentials.getProperty("lastfm.apikey"),
                 this.lastFmCredentials.getProperty("lastfm.secret"));
 
-        List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(
-                (List<ScrobbleData>) Utils.transformTracksToScrobbleData(event.getNewTracks()), session);
+        if (session == null) {
+            this.logger.warn("No session returned for session key " + event.getLastFmSessionKey() + "! Won't scrobble anything.");
+            return;
+        }
+
+        List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(event.getNewTracks());
+        List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
         Utils.logFailedScrobbleAttempts(result, session.getUsername());
     }
 }
