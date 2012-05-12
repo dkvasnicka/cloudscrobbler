@@ -11,7 +11,7 @@
         <h1>Cloudscrobbler - Mixcloud and Last.fm in love</h1>
         <c:if test="#{empty lastFmSession}">
             <div id="login">
-                <a href="http://www.last.fm/api/auth/?api_key=3114f8efd48db0275c92b6bf0ac55ee5&amp;cb=http://localhost:8080/cloudscrobbler-1.0/auth/cb">
+                <a href="http://www.last.fm/api/auth/?api_key=3114f8efd48db0275c92b6bf0ac55ee5#{misc['lastfm.cburl']}">
                     Connect with Last.fm
                     <img src="img/lastfm_red.gif" alt="Connect with Last.fm" title="Connect with Last.fm" />
                 </a>
