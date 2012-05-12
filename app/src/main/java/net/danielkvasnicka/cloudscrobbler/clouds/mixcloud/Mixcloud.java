@@ -6,10 +6,9 @@ package net.danielkvasnicka.cloudscrobbler.clouds.mixcloud;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import javax.ejb.Asynchronous;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.enterprise.event.Event;
@@ -21,6 +20,8 @@ import net.danielkvasnicka.cloudscrobbler.engine.api.Track;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
 import net.danielkvasnicka.cloudscrobbler.utils.Utils;
+import org.jboss.solder.logging.Category;
+import org.jboss.solder.logging.Logger;
 
 /**
  *
@@ -38,17 +39,23 @@ public class Mixcloud {
     @Inject
     private MixcloudRESTClient client;
     
-    //@Schedule(second = "*/5", minute = "*", hour = "*", persistent = false)
+    @Inject @Category("Mixcloud")
+    private Logger logger;
+
+    //@Schedule(second = "*/59", minute = "*", hour = "*", persistent = false)
+    @Asynchronous
     public void checkForNewListens() throws Exception {        
         Iterator<Listener> listeners = this.repository.getAllActiveListeners().iterator();
         
         while (listeners.hasNext()) {
             final Listener listener = listeners.next();            
-            
+            this.logger.debug("Checking for new listens for " + listener.getCloudId());
+
             // get listens
             Listens entity = this.client.getListensFor(listener);
             List<Mix> mixes = entity.getData();
-            
+            this.logger.debug("Found " + mixes.size() + " new mixes.");
+
             if (!mixes.isEmpty()) {
 
                 // update listener
