@@ -1,5 +1,6 @@
 (ns net.danielkvasnicka.cloudscrobbler.utils.Utils
 	(:gen-class
+      ; :name #^{javax.inject.Named {}} net.danielkvasnicka.cloudscrobbler.utils.Utils
       :methods 
           [
            #^{:static true} [getOnlyTracksFromMixSections [java.util.Collection] java.util.Collection]
