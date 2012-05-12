@@ -9,7 +9,13 @@
     <artifactId>cloudscrobbler-clj</artifactId>
     <packaging>clojure</packaging>
     <version>1.0</version>
-    <name>Cloudscrobbler Clojure utils</name>
+    <name>Cloudscrobbler Clojure Stuff</name>
+
+    <parent>
+        <groupId>cloudscrobbler</groupId>
+        <artifactId>cloudscrobbler</artifactId>
+        <version>1.0</version>
+    </parent>
 
     <build>
         <plugins>
@@ -20,9 +26,23 @@
                 <extensions>true</extensions>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/resources</directory>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
