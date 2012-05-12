@@ -29,6 +29,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jboss.solder</groupId>
+            <artifactId>solder-impl</artifactId>
+            <version>3.1.1.Final</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.jboss.seam.rest</groupId>
             <artifactId>seam-rest</artifactId>
             <version>3.1.0.Final</version>
@@ -98,15 +104,6 @@
         <dependency>
             <groupId>last.fm</groupId>
             <artifactId>last.fm-bindings</artifactId>
-            <version>0.1.1</version>
-            <scope>system</scope>
-            <systemPath>${project.build.directory}/../src/main/webapp/WEB-INF/lib/last.fm-bindings-0.1.1.jar</systemPath>
-        </dependency>
-        
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
         </dependency>
         
         <dependency>
@@ -114,7 +111,20 @@
             <artifactId>cloudscrobbler-clj</artifactId>
             <version>1.0</version>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     
     <build>

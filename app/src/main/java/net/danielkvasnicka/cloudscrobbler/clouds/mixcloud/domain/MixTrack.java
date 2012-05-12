@@ -39,5 +39,12 @@ public class MixTrack implements Track {
 
     public String getArtist() {
         return (String) this.artistInfo.get("name");
-    }        
+    }
+
+    @Override
+    public String toString() {
+        return this.getArtist() + " - " + this.getName();
+    }
+
+
 }
