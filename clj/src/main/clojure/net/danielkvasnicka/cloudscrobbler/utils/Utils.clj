@@ -5,6 +5,7 @@
           [
            #^{:static true} [getOnlyTracksFromMixSections [java.util.Collection] java.util.Collection]
            #^{:static true} [getListenTimeForNewestMix [java.util.Collection] java.util.Date] 
+           #^{:static true} [transformTracksToScrobbleData [java.util.Collection] java.util.Collection]
            #^{:static true} [logFailedScrobbleAttempts [java.util.Collection java.lang.String] void] 
           ]
     )
@@ -16,6 +17,9 @@
 
 (defn -getListenTimeForNewestMix [mixes]
   (last (sort #(.getListenTime %) mixes)))
+
+(defn -transformTracksToScrobbleData [tracks]
+  (map #(de.umass.lastfm.scrobble.ScrobbleData. (.getArtist %) (.getTrack %) (/ (System/currentTimeMillis) 1000)) tracks))
 
 (defn -logFailedScrobbleAttempts [results user]
   (doseq [result (filter #(= (.getStatus %) de.umass.lastfm.Result$Status/FAILED) results)]
