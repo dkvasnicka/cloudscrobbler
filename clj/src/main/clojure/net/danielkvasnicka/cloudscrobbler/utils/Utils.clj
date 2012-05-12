@@ -19,7 +19,7 @@
   (last (sort #(.getListenTime %) mixes)))
 
 (defn -transformTracksToScrobbleData [tracks]
-  (map #(de.umass.lastfm.scrobble.ScrobbleData. (.getArtist %) (.getTrack %) (/ (System/currentTimeMillis) 1000)) tracks))
+  (map #(de.umass.lastfm.scrobble.ScrobbleData. (.getArtist %) (.getName %) (/ (System/currentTimeMillis) 1000)) tracks))
 
 (defn -logFailedScrobbleAttempts [results user]
   (doseq [result (filter #(= (.getStatus %) de.umass.lastfm.Result$Status/FAILED) results)]
