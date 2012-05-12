@@ -27,7 +27,7 @@ public class LastfmCallbackHandler extends HttpServlet {
     
     @Inject
     @Resource("META-INF/lastfm.properties")
-    Properties lastFmCredentials;
+    private Properties lastFmCredentials;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

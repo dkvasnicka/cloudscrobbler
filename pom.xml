@@ -20,6 +20,14 @@
                 <type>pom</type>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>last.fm</groupId>
+                <artifactId>last.fm-bindings</artifactId>
+                <version>0.1.1</version>
+                <scope>system</scope>
+                <systemPath>${project.build.directory}/../../app/src/main/webapp/WEB-INF/lib/last.fm-bindings-0.1.1.jar</systemPath>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
