@@ -19,5 +19,5 @@
 
 (defn -logFailedScrobbleAttempts [results user]
   (doseq [result (filter #(= (.getStatus %) de.umass.lastfm.Result$Status/FAILED) results)]
-    (error (str "Scrobbling of" (.getArtist result) " - " (.getTrack result) "for user" user "failed: " 
+    (error (str "Scrobbling of " (.getArtist result) " - " (.getTrack result) " for user " user " failed: " 
                 (.getErrorMessage result)))))
