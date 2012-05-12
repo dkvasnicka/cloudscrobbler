@@ -4,13 +4,10 @@ import com.googlecode.jeeunit.JeeunitRunner;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import net.danielkvasnicka.cloudscrobbler.clouds.mixcloud.domain.MixTrack;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
 import net.danielkvasnicka.cloudscrobbler.engine.api.Track;
-import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
-import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,12 +18,8 @@ import org.junit.runner.RunWith;
 @RunWith(JeeunitRunner.class)
 public class EngineTest {
 
-
-    @EJB
-    private Engine engine;
-
     @Inject
-    private ListenerRepository repository;
+    private Engine engine;
 
     @Test
     public final void testNewTracksEventObserver() throws Throwable {
@@ -34,8 +27,7 @@ public class EngineTest {
         this.engine.scrobble(new NewTracks() {
 
             public String getLastFmSessionKey() {
-                Listener l = EngineTest.this.repository.getAllActiveListeners().iterator().next();
-                return l.getLastFmSessionKey();
+                return "4027b9835f7788c56e4292a47080e4d2";
             }
 
             public Collection<Track> getNewTracks() {
