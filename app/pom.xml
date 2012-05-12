@@ -1,3 +1,4 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -7,7 +8,7 @@
     <version>1.0</version>
     <name>Cloudscrobbler Web App</name>
 
-	<parent>
+    <parent>
         <groupId>cloudscrobbler</groupId>
         <artifactId>cloudscrobbler</artifactId>
         <version>1.0</version>
@@ -134,7 +135,7 @@
                         <manifestEntries>
                             <Dependencies>org.apache.httpcomponents</Dependencies>
                         </manifestEntries>
-                    </archive>                    
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
@@ -155,6 +156,13 @@
                         </configuration>
                     </plugin>
                 </plugins>
+
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/openshift</directory>
+                        <targetPath>META-INF</targetPath>
+                    </resource>
+                </resources>
             </build>
         </profile>
         
@@ -177,6 +185,13 @@
                         </executions>
                     </plugin>
                 </plugins>
+
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/local</directory>
+                        <targetPath>META-INF</targetPath>
+                    </resource>
+                </resources>
             </build>
         </profile>
     </profiles>
