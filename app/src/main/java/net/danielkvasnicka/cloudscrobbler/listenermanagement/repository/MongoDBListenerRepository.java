@@ -11,7 +11,6 @@ import javax.inject.Singleton;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.config.Collection;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
-import net.danielkvasnicka.cloudscrobbler.web.auth.aop.LastFmSessionActive;
 import org.jongo.MongoCollection;
 
 /**
@@ -24,7 +23,6 @@ public class MongoDBListenerRepository implements ListenerRepository {
     @Inject @Collection("listeners")
     private MongoCollection listeners;
     
-    @LastFmSessionActive
     public Listener findListener(String lastFmId) {
         return this.listeners.findOne(
                 "{ lastFmId : # }", lastFmId).as(Listener.class);

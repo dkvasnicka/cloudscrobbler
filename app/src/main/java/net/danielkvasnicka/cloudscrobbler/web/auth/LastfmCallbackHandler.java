@@ -36,7 +36,8 @@ public class LastfmCallbackHandler extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Session session = Authenticator.getSession(req.getParameter("token"),
+        Session session = Authenticator.getSession(
+                req.getParameter("token"),
                 this.lastFmCredentials.getProperty("lastfm.apikey"),
                 this.lastFmCredentials.getProperty("lastfm.secret"));
 

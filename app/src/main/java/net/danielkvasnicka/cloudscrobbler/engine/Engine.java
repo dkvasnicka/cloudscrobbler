@@ -4,7 +4,6 @@
  */
 package net.danielkvasnicka.cloudscrobbler.engine;
 
-import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.Session;
 import de.umass.lastfm.scrobble.ScrobbleData;
 import de.umass.lastfm.scrobble.ScrobbleResult;
@@ -38,17 +37,14 @@ public class Engine {
         for (ScrobbleBatch batch : event.getBatches()) {
 
             String lastFmSessionKey = batch.getLastFmSessionKey();
-            Session session = Authenticator.getSession(lastFmSessionKey,
+            Session session = Session.createSession(
                     this.lastFmCredentials.getProperty("lastfm.apikey"),
-                    this.lastFmCredentials.getProperty("lastfm.secret"));
-
-            if (session == null) {
-                this.logger.warn("No session returned for session key " + lastFmSessionKey + "! Won't scrobble anything.");
-                return;
-            }
+                    this.lastFmCredentials.getProperty("lastfm.secret"),
+                    lastFmSessionKey);
 
             List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(batch.getNewTracks());
             List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
+            // TODO: use the logger
             Utils.logFailedScrobbleAttempts(result, session.getUsername());
         }
     }
