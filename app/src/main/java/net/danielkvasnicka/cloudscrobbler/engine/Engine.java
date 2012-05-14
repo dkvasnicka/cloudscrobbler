@@ -14,6 +14,7 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
+import net.danielkvasnicka.cloudscrobbler.engine.api.ScrobbleBatch;
 import net.danielkvasnicka.cloudscrobbler.utils.Utils;
 import org.jboss.solder.logging.Category;
 import org.jboss.solder.logging.Logger;
@@ -34,18 +35,21 @@ public class Engine {
     private Logger logger;
 
     public void scrobble(@Observes NewTracks event) {
-        String lastFmSessionKey = event.getLastFmSessionKey();
-        Session session = Authenticator.getSession(lastFmSessionKey,
-                this.lastFmCredentials.getProperty("lastfm.apikey"),
-                this.lastFmCredentials.getProperty("lastfm.secret"));
+        for (ScrobbleBatch batch : event.getBatches()) {
 
-        if (session == null) {
-            this.logger.warn("No session returned for session key " + lastFmSessionKey + "! Won't scrobble anything.");
-            return;
+            String lastFmSessionKey = batch.getLastFmSessionKey();
+            Session session = Authenticator.getSession(lastFmSessionKey,
+                    this.lastFmCredentials.getProperty("lastfm.apikey"),
+                    this.lastFmCredentials.getProperty("lastfm.secret"));
+
+            if (session == null) {
+                this.logger.warn("No session returned for session key " + lastFmSessionKey + "! Won't scrobble anything.");
+                return;
+            }
+
+            List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(batch.getNewTracks());
+            List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
+            Utils.logFailedScrobbleAttempts(result, session.getUsername());
         }
-
-        List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(event.getNewTracks());
-        List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
-        Utils.logFailedScrobbleAttempts(result, session.getUsername());
     }
 }

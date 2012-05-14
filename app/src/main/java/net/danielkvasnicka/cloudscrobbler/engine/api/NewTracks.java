@@ -10,9 +10,15 @@ import java.util.Collection;
  *
  * @author daniel
  */
-public interface NewTracks {
+public class NewTracks {
 
-    String getLastFmSessionKey();
-    
-    Collection<Track> getNewTracks();
+    private Collection<ScrobbleBatch> batches;
+
+    public NewTracks(Collection<ScrobbleBatch> batches) {
+        this.batches = batches;
+    }
+
+    public Collection<ScrobbleBatch> getBatches() {
+        return batches;
+    }
 }
