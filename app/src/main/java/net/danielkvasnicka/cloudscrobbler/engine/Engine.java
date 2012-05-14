@@ -10,8 +10,7 @@ import de.umass.lastfm.scrobble.ScrobbleData;
 import de.umass.lastfm.scrobble.ScrobbleResult;
 import java.util.List;
 import java.util.Properties;
-import javax.ejb.Asynchronous;
-import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
@@ -24,7 +23,7 @@ import org.jboss.solder.resourceLoader.Resource;
  *
  * @author daniel
  */
-@Stateless
+@Dependent
 public class Engine {
 
     @Inject
