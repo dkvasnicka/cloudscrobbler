@@ -35,12 +35,13 @@ public class Engine {
     private Logger logger;
 
     public void scrobble(@Observes NewTracks event) {
-        Session session = Authenticator.getSession(event.getLastFmSessionKey(),
+        String lastFmSessionKey = event.getLastFmSessionKey();
+        Session session = Authenticator.getSession(lastFmSessionKey,
                 this.lastFmCredentials.getProperty("lastfm.apikey"),
                 this.lastFmCredentials.getProperty("lastfm.secret"));
 
         if (session == null) {
-            this.logger.warn("No session returned for session key " + event.getLastFmSessionKey() + "! Won't scrobble anything.");
+            this.logger.warn("No session returned for session key " + lastFmSessionKey + "! Won't scrobble anything.");
             return;
         }
 
