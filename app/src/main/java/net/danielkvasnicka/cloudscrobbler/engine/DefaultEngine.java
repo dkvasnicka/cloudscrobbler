@@ -4,6 +4,7 @@
  */
 package net.danielkvasnicka.cloudscrobbler.engine;
 
+import net.danielkvasnicka.cloudscrobbler.engine.api.Engine;
 import de.umass.lastfm.Session;
 import de.umass.lastfm.scrobble.ScrobbleData;
 import de.umass.lastfm.scrobble.ScrobbleResult;
@@ -24,7 +25,7 @@ import org.jboss.solder.resourceLoader.Resource;
  * @author daniel
  */
 @Dependent
-public class Engine {
+public class DefaultEngine implements Engine {
 
     @Inject
     @Resource("META-INF/lastfm.properties")
