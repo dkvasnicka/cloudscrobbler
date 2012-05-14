@@ -25,9 +25,9 @@ public class MongoDBListenerRepository implements ListenerRepository {
     private MongoCollection listeners;
     
     @LastFmSessionActive
-    public Listener findListener(String lastFmSessionKey) {
+    public Listener findListener(String lastFmId) {
         return this.listeners.findOne(
-                "{ lastFmSessionKey : # }", lastFmSessionKey).as(Listener.class);
+                "{ lastFmId : # }", lastFmId).as(Listener.class);
     }
 
     public void saveListener(Listener listener) {

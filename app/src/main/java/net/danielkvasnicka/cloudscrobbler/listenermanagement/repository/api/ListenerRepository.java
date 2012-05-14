@@ -12,7 +12,7 @@ import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
  */
 public interface ListenerRepository {
     
-    Listener findListener(String lastFmSessionKey);
+    Listener findListener(String lastFmId);
     
     void saveListener(Listener listener);
     

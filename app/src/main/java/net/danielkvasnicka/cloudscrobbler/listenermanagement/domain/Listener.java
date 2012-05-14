@@ -19,9 +19,19 @@ public class Listener {
     
     private String cloudId;
 
+    private String lastFmId;
+
     private String lastFmSessionKey;
     
     private Date lastScrobbledItemTimestamp;
+
+    public String getLastFmId() {
+        return lastFmId;
+    }
+
+    public void setLastFmId(String lastFmId) {
+        this.lastFmId = lastFmId;
+    }
 
     public Date getLastScrobbledItemTimestamp() {
         return lastScrobbledItemTimestamp;
