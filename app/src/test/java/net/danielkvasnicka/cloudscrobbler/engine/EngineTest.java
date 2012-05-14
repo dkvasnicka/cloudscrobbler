@@ -1,5 +1,6 @@
 package net.danielkvasnicka.cloudscrobbler.engine;
 
+import net.danielkvasnicka.cloudscrobbler.engine.api.Engine;
 import com.googlecode.jeeunit.JeeunitRunner;
 import java.util.Arrays;
 import java.util.Collection;
