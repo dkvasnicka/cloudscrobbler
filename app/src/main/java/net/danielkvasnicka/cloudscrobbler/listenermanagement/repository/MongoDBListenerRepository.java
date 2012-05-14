@@ -17,7 +17,7 @@ import org.jongo.MongoCollection;
  *
  * @author daniel
  */
-@Named @Singleton
+@Singleton
 public class MongoDBListenerRepository implements ListenerRepository {
 
     @Inject @Collection("listeners")
