@@ -32,15 +32,10 @@ public class Settings {
     
     @PostConstruct
     public void initListener() {
-        Listener savedListener = this.listenerRepository.findListener(this.lastFmSession.getKey());
-        this.listener = savedListener == null ? new Listener() : savedListener;
+        this.listener = this.listenerRepository.findListener(this.lastFmSession.getUsername());
     }
     
     public void save() {        
-        String key = this.lastFmSession.getKey();
-        if (this.listener.getLastFmSessionKey() == null) {            
-            this.listener.setLastFmSessionKey(key);
-        }
         this.listenerRepository.saveListener(this.listener);
     }
     

@@ -14,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
+import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
 import org.jboss.solder.resourceLoader.Resource;
 
 /**
@@ -29,13 +31,31 @@ public class LastfmCallbackHandler extends HttpServlet {
     @Resource("META-INF/lastfm.properties")
     private Properties lastFmCredentials;
 
+    @Inject
+    private ListenerRepository listenerRepository;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Session session = Authenticator.getSession(req.getParameter("token"),
                 this.lastFmCredentials.getProperty("lastfm.apikey"),
                 this.lastFmCredentials.getProperty("lastfm.secret"));
 
+        if (session == null) {
+            throw new IllegalStateException("Invalid Last.fm session!");
+        }
+
         req.getSession().setAttribute(LAST_FM_SESSION_ATTR, session);
+        String lastFmUsername = session.getUsername();
+        
+        Listener listener = this.listenerRepository.findListener(lastFmUsername);
+        if (listener == null) {
+            listener = new Listener();
+            listener.setLastFmId(lastFmUsername);
+        }
+
+        listener.setLastFmSessionKey(session.getKey());
+        this.listenerRepository.saveListener(listener);
+
         resp.sendRedirect("../index.htm");
     }
 }
