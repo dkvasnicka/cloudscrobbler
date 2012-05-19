@@ -17,8 +17,6 @@ import javax.inject.Singleton;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
 import net.danielkvasnicka.cloudscrobbler.engine.api.ScrobbleBatch;
 import net.danielkvasnicka.cloudscrobbler.utils.Utils;
-import org.jboss.solder.logging.Category;
-import org.jboss.solder.logging.Logger;
 import org.jboss.solder.resourceLoader.Resource;
 
 /**
@@ -32,9 +30,6 @@ public class DefaultEngine implements Engine {
     @Inject
     @Resource("META-INF/lastfm.properties")
     private Properties lastFmCredentials;
-
-    @Inject @Category("Engine")
-    private Logger logger;
 
     public void scrobble(@Observes NewTracks event) {
         for (ScrobbleBatch batch : event.getBatches()) {
