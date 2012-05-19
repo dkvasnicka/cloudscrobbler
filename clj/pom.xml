@@ -44,6 +44,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jboss.solder</groupId>
+            <artifactId>solder-impl</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>last.fm</groupId>
             <artifactId>last.fm-bindings</artifactId>
         </dependency>
@@ -68,6 +73,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cloudscrobbler</groupId>
+            <artifactId>cloudscrobbler-api</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

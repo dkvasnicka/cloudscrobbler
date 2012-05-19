@@ -3,3 +3,4 @@
 .DS_Store
 *.NavData
 app/src/main/webapp/WEB-INF/lib/WEB-INF-lib-sources.jar
+/api/target/
