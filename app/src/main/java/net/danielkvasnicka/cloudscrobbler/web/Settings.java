@@ -6,9 +6,8 @@ package net.danielkvasnicka.cloudscrobbler.web;
 
 import de.umass.lastfm.Session;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
 import net.danielkvasnicka.cloudscrobbler.web.auth.aop.LastFmSessionActive;
@@ -17,8 +16,7 @@ import net.danielkvasnicka.cloudscrobbler.web.auth.aop.LastFmSessionActive;
  *
  * @author daniel
  */
-@Named
-@RequestScoped
+@Model
 @LastFmSessionActive
 public class Settings {
 
