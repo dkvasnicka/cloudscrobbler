@@ -33,7 +33,6 @@
         <dependency>
             <groupId>org.jboss.solder</groupId>
             <artifactId>solder-impl</artifactId>
-            <version>3.1.1.Final</version>
         </dependency>
 
         <dependency>
@@ -107,10 +106,16 @@
             <groupId>last.fm</groupId>
             <artifactId>last.fm-bindings</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>cloudscrobbler</groupId>
             <artifactId>cloudscrobbler-clj</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cloudscrobbler</groupId>
+            <artifactId>cloudscrobbler-api</artifactId>
             <version>1.0</version>
         </dependency>
 
@@ -155,14 +160,12 @@
             <groupId>org.clojure</groupId>
             <artifactId>clojure</artifactId>
             <version>1.4.0</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.clojure</groupId>
             <artifactId>tools.logging</artifactId>
             <version>0.2.3</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -237,21 +240,5 @@
                 </resources>
             </build>
         </profile>
-    </profiles>
-    
-    <repositories>
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    </profiles>        
 </project>
