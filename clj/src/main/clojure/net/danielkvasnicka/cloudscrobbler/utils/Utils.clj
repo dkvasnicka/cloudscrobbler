@@ -16,7 +16,7 @@
   (map #(.getTrack %) (filter #(.isTrack %) sections)))
 
 (defn -getListenTimeForNewestMix [mixes]
-  (last (sort #(.getListenTime %) mixes)))
+  (.getListenTime (last (sort-by #(.getListenTime %) mixes))))
 
 (defn -transformTracksToScrobbleData [tracks]
   (map #(de.umass.lastfm.scrobble.ScrobbleData. (.getArtist %) (.getName %) (/ (System/currentTimeMillis) 1000)) tracks))
