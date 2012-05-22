@@ -6,6 +6,7 @@ package net.danielkvasnicka.cloudscrobbler.clouds.mixcloud;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.TimeZone;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ import org.jboss.seam.rest.client.RestClient;
 @Singleton
 public class MixcloudRESTClient {    
 
-    private static final String BASE_API_URL = "http://api.mixcloud.com";    
+    private static final String BASE_API_URL = "http://api.mixcloud.com";
 
     @Inject @RestClient(BASE_API_URL)
     private Instance<ClientRequest> request;
@@ -38,8 +39,7 @@ public class MixcloudRESTClient {
     
     public Listens getListensFor(Listener listener) throws Exception {
         Date lastScrobbledItemTimestamp = listener.getLastScrobbledItemTimestamp();
-        long since = lastScrobbledItemTimestamp == null ? 
-                new Date().getTime() : lastScrobbledItemTimestamp.getTime() + 1;
+        long since = Math.round(lastScrobbledItemTimestamp.getTime() / 1000f);
         
         ClientRequest req = this.request.get();
         req.overrideUri(URI.create(String.format(BASE_API_URL + "/%s/listens/", listener.getCloudId())));

@@ -24,7 +24,6 @@ import org.jboss.solder.resourceLoader.Resource;
  * @author daniel
  */
 @ApplicationScoped
-@Singleton
 public class DefaultEngine implements Engine {
 
     @Inject
@@ -42,7 +41,6 @@ public class DefaultEngine implements Engine {
 
             List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(batch.getNewTracks());
             List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
-            // TODO: use the logger
             Utils.logFailedScrobbleAttempts(result, session.getUsername());
         }
     }
