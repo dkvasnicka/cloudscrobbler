@@ -6,12 +6,15 @@ package net.danielkvasnicka.cloudscrobbler.listenermanagement.domain;
 
 import java.util.Date;
 import org.bson.types.ObjectId;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 /**
  *
  * @author daniel
  */
 public class Listener {
+    public static final String EUROPE_LONDON_TZ = "Europe/London";
         
     private ObjectId _id;
     
@@ -47,6 +50,11 @@ public class Listener {
 
     public void setEnableScrobbling(boolean enableScrobbling) {
         this.enableScrobbling = enableScrobbling;
+
+        if (enableScrobbling && !this.enableScrobbling) {
+            this.setLastScrobbledItemTimestamp(
+                    new DateTime().withZone(DateTimeZone.forID(EUROPE_LONDON_TZ)).toDate());
+        }
     }
 
     public String getCloudId() {

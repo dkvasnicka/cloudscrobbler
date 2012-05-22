@@ -7,6 +7,7 @@ package net.danielkvasnicka.cloudscrobbler.web.auth;
 import de.umass.lastfm.Authenticator;
 import de.umass.lastfm.Session;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.repository.api.ListenerRepository;
 import org.jboss.solder.resourceLoader.Resource;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 /**
  *
@@ -51,6 +54,8 @@ public class LastfmCallbackHandler extends HttpServlet {
         Listener listener = this.listenerRepository.findListener(lastFmUsername);
         if (listener == null) {
             listener = new Listener();
+            listener.setLastScrobbledItemTimestamp(
+                    new DateTime().withZone(DateTimeZone.forID(Listener.EUROPE_LONDON_TZ)).toDate());
             listener.setLastFmId(lastFmUsername);
         }
 
