@@ -13,7 +13,6 @@ import java.util.Properties;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import net.danielkvasnicka.cloudscrobbler.engine.api.NewTracks;
 import net.danielkvasnicka.cloudscrobbler.engine.api.ScrobbleBatch;
 import net.danielkvasnicka.cloudscrobbler.utils.Utils;
