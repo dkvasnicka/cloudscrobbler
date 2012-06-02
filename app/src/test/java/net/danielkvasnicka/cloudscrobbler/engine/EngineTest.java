@@ -39,10 +39,10 @@ public class EngineTest {
     private Collection<Track> getNewTracks() {
         MixTrack t = new MixTrack();
         t.setArtistInfo(new HashMap() {{
-            put("name", "Astral Projection");
+            put("name", "Infected Mushroom");
         }});
 
-        t.setName("Mahadeva");
+        t.setName("Becoming Insane");
 
         return Arrays.asList(new Track[] { t });
     }

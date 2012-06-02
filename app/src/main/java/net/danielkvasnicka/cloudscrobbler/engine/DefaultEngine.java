@@ -6,9 +6,6 @@ package net.danielkvasnicka.cloudscrobbler.engine;
 
 import net.danielkvasnicka.cloudscrobbler.engine.api.Engine;
 import de.umass.lastfm.Session;
-import de.umass.lastfm.scrobble.ScrobbleData;
-import de.umass.lastfm.scrobble.ScrobbleResult;
-import java.util.List;
 import java.util.Properties;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
@@ -38,9 +35,7 @@ public class DefaultEngine implements Engine {
                     this.lastFmCredentials.getProperty("lastfm.secret"),
                     lastFmSessionKey);
 
-            List<ScrobbleData> scrobbleData = (List<ScrobbleData>) Utils.transformTracksToScrobbleData(batch.getNewTracks());
-            List<ScrobbleResult> result = de.umass.lastfm.Track.scrobble(scrobbleData, session);
-            Utils.logFailedScrobbleAttempts(result, session.getUsername());
+            Utils.doScrobble(batch.getNewTracks(), session);
         }
     }
 }
