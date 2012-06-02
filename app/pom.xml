@@ -226,6 +226,9 @@
                         <groupId>org.jboss.as.plugins</groupId>
                         <artifactId>jboss-as-maven-plugin</artifactId>
                         <version>7.1.1.Final</version>
+                        <configuration>
+                            <ignoreMissingDeployment>true</ignoreMissingDeployment>
+                        </configuration>
                         <executions>
                             <execution>
                                 <phase>package</phase>
