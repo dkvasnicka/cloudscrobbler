@@ -46,3 +46,13 @@ a {
 	padding-top: 10px;
 	margin-top: 20px;
 }
+
+fieldset {
+    border: 1px silver dotted;
+    margin: 10px 0;
+    text-align: left;
+}
+
+input[type=submit] {
+    font-weight: bold;
+}
