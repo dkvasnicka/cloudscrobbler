@@ -5,44 +5,44 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <head>
-		<title>Cloudscrobbler - Mixcloud and Last.fm in love</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+        <title>Cloudscrobbler - Mixcloud and Last.fm in love</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
-	<body>
-			<div id="main">
-					<img src="img/logo.png" alt="Cloudscrobbler? Mixcloud and Last.fm in love!" 
-					title="Cloudscrobbler? Mixcloud and Last.fm in love!" id="logo" />
-					<h1>Mixcloud and Last.fm in love!</h1> This app will automatically scrobble every mix 
-					you play on Mixcloud. Set it up and enjoy. Yes, it's that easy.
+    <body>
+        <div id="main">
+            <img src="img/logo.png" alt="Cloudscrobbler? Mixcloud and Last.fm in love!"
+                 title="Cloudscrobbler? Mixcloud and Last.fm in love!" id="logo" />
+            <h1>Mixcloud and Last.fm in love!</h1> This app will automatically scrobble every mix
+            you play on Mixcloud. Set it up and enjoy. Yes, it's that easy.
 
-        <c:if test="#{empty lastFmSession}">
-            <p id="login">
-                <a href="http://www.last.fm/api/auth/?api_key=3114f8efd48db0275c92b6bf0ac55ee5#{misc['lastfm.cburl']}">
-						Connect with Last.fm<br />
-                    <img src="img/lastfm_red.gif" alt="Connect with Last.fm" title="Connect with Last.fm" />
-                </a>
+            <c:if test="#{empty lastFmSession}">
+                <p id="login">
+                    <a href="http://www.last.fm/api/auth/?api_key=3114f8efd48db0275c92b6bf0ac55ee5#{misc['lastfm.cburl']}">
+                        Connect with Last.fm<br />
+                        <img src="img/lastfm_red.gif" alt="Connect with Last.fm" title="Connect with Last.fm" />
+                    </a>
+                </p>
+            </c:if>
+
+            <h:form rendered="#{not empty lastFmSession}" id="settingsForm">
+                My Last.fm username is <strong>#{lastFmSession.username}</strong> and I want to
+                <h:selectOneMenu value="#{settings.listener.enableScrobbling}">
+                    <f:selectItem itemLabel="scrobble every mix I play on Mixcloud" itemValue="true" />
+                    <f:selectItem itemLabel="disable Mixcloud scrobbling for now" itemValue="false" />
+                </h:selectOneMenu><br />
+                My Mixcloud username is
+                <h:inputText value="#{settings.listener.cloudId}" />.
+
+                <h:commandButton action="#{settings.save}" value="Save" />
+                <h:commandButton action="#{auth.logout}" value="Logout" />
+            </h:form>
+
+            <p id="footer">
+                Made by <a href="https://twitter.com/#!/dkvasnickajr">@dkvasnickajr</a> |
+                I'm <a href="http://www.last.fm/user/smilelover">smilelover</a> on Last.fm and
+                <a href="http://www.mixcloud.com/dkvasnicka/">dkvasnicka</a> on Mixcloud | Written in Java EE 6 &amp; Clojure, running on
+                <a href="https://openshift.redhat.com">OpenShift</a>
             </p>
-        </c:if>
-        
-        <h:form rendered="#{not empty lastFmSession}" id="settingsForm">
-            My Last.fm username is <strong>#{lastFmSession.username}</strong> and I want to 
-            <h:selectOneMenu value="#{settings.listener.enableScrobbling}">
-                <f:selectItem itemLabel="scrobble every mix I play on Mixcloud" itemValue="true" />
-                <f:selectItem itemLabel="disable Mixcloud scrobbling for now" itemValue="false" />
-            </h:selectOneMenu><br />
-            My Mixcloud username is
-            <h:inputText value="#{settings.listener.cloudId}" />.
-            
-            <h:commandButton action="#{settings.save}" value="Save" />
-            <h:commandButton action="#{auth.logout}" value="Logout" />
-			</h:form>
-
-			<p id="footer">
-			Made by <a href="https://twitter.com/#!/dkvasnickajr">@dkvasnickajr</a> | 
-			I'm <a href="http://www.last.fm/user/smilelover">smilelover</a> on Last.fm and 
-			<a href="http://www.mixcloud.com/dkvasnicka/">dkvasnicka</a> on Mixcloud | Written in Java and Clojure, running on 
-			<a href="https://openshift.redhat.com">OpenShift</a>
-			</p>
         </div>
 
     </body>
