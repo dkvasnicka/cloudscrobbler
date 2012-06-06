@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import javax.ejb.Asynchronous;
-import javax.ejb.Singleton;
+import javax.ejb.Schedule;
+import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import net.danielkvasnicka.cloudscrobbler.clouds.mixcloud.domain.Listens;
@@ -27,7 +27,7 @@ import org.jboss.solder.logging.Logger;
  *
  * @author daniel
  */
-@Singleton
+@Stateless
 public class Mixcloud {
     
     @Inject
@@ -42,9 +42,9 @@ public class Mixcloud {
     @Inject @Category("Mixcloud")
     private Logger logger;
 
-    //@Schedule(second = "*/59", minute = "*", hour = "*", persistent = false)
-    @Asynchronous
-    public void checkForNewListens() throws Exception {        
+    @Schedule(minute = "*/30", hour = "*", persistent = false)
+    public void checkForNewListens() throws Exception {
+        this.logger.info("Running Mixcloud scanner to determine new listens.");
         Iterator<Listener> listeners = this.repository.getAllActiveListeners().iterator();
 
         Collection<ScrobbleBatch> batches = new ArrayList<ScrobbleBatch>();
