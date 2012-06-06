@@ -25,23 +25,26 @@
             </c:if>
 
             <h:form rendered="#{not empty lastFmSession}" id="settingsForm">
-                My Last.fm username is <strong>#{lastFmSession.username}</strong> and I want to
-                <h:selectOneMenu value="#{settings.listener.enableScrobbling}">
-                    <f:selectItem itemLabel="scrobble every mix I play on Mixcloud" itemValue="true" />
-                    <f:selectItem itemLabel="disable Mixcloud scrobbling for now" itemValue="false" />
-                </h:selectOneMenu><br />
-                My Mixcloud username is
-                <h:inputText value="#{settings.listener.cloudId}" />.
-
-                <h:commandButton action="#{settings.save}" value="Save" />
-                <h:commandButton action="#{auth.logout}" value="Logout" />
+                <fieldset>
+                    My Last.fm username is <strong>#{lastFmSession.username}</strong> and I want to
+                    <h:selectOneMenu value="#{settings.listener.enableScrobbling}">
+                        <f:selectItem itemLabel="scrobble every mix I play on Mixcloud" itemValue="true" />
+                        <f:selectItem itemLabel="disable Mixcloud scrobbling for now" itemValue="false" />
+                    </h:selectOneMenu><br />
+                    My Mixcloud username is
+                    <h:inputText value="#{settings.listener.cloudId}" />
+                </fieldset>
+                <fieldset style="text-align: right !important">
+                    <h:commandButton action="#{settings.save}" value="Save" />
+                    <h:commandButton action="#{auth.logout}" value="Logout" />
+                </fieldset>
             </h:form>
 
             <p id="footer">
                 Made by <a href="https://twitter.com/#!/dkvasnickajr">@dkvasnickajr</a> |
                 I'm <a href="http://www.last.fm/user/smilelover">smilelover</a> on Last.fm and
                 <a href="http://www.mixcloud.com/dkvasnicka/">dkvasnicka</a> on Mixcloud | Written in Java EE 6 &amp; Clojure, running on
-                <a href="https://openshift.redhat.com">OpenShift</a>
+                <a href="http://openshift.redhat.com">OpenShift</a>
             </p>
         </div>
 
