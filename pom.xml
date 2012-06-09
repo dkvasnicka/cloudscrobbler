@@ -22,11 +22,9 @@
             </dependency>
 
             <dependency>
-                <groupId>last.fm</groupId>
+                <groupId>last-fm-bindings</groupId>
                 <artifactId>last.fm-bindings</artifactId>
                 <version>0.1.1</version>
-                <scope>system</scope>
-                <systemPath>${project.build.directory}/../../app/src/main/webapp/WEB-INF/lib/last.fm-bindings-0.1.1.jar</systemPath>
             </dependency>
 
             <dependency>
@@ -79,6 +77,10 @@
                 <enabled>false</enabled>
                 <updatePolicy>never</updatePolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>my</id>
+            <url>http://mvn.danielkvasnicka.net/</url>
         </repository>
     </repositories>
 </project>
