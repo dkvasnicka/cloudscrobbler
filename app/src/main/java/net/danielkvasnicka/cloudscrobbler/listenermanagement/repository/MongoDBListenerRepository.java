@@ -6,7 +6,6 @@ package net.danielkvasnicka.cloudscrobbler.listenermanagement.repository;
 
 import java.io.IOException;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Singleton;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.config.Collection;
 import net.danielkvasnicka.cloudscrobbler.listenermanagement.domain.Listener;
