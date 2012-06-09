@@ -49,7 +49,7 @@
         </dependency>
 
         <dependency>
-            <groupId>last.fm</groupId>
+            <groupId>last-fm-bindings</groupId>
             <artifactId>last.fm-bindings</artifactId>
         </dependency>
 
