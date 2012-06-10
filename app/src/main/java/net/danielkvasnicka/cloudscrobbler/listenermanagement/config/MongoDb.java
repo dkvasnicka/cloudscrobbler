@@ -4,6 +4,7 @@
  */
 package net.danielkvasnicka.cloudscrobbler.listenermanagement.config;
 
+import com.mongodb.DB;
 import com.mongodb.Mongo;
 import java.lang.annotation.Annotation;
 import java.net.UnknownHostException;
@@ -30,7 +31,17 @@ public class MongoDb {
     public MongoCollection getCollection(InjectionPoint point) throws UnknownHostException {
         Mongo mongo = new Mongo(this.mongoConfig.getProperty("mongodb.host"), 
                 Integer.parseInt(this.mongoConfig.getProperty("mongodb.port")));
-        Jongo jongo = new Jongo(mongo.getDB(this.mongoConfig.getProperty("mongodb.dbname")));
+
+        DB db = mongo.getDB(this.mongoConfig.getProperty("mongodb.dbname"));
+        String username = this.mongoConfig.getProperty("mongodb.user");
+
+        if (username != null && !db.authenticate(username,
+                this.mongoConfig.getProperty("mongodb.passwd").toCharArray())) {
+
+            throw new RuntimeException("Invalid credentials for MongoDB");
+        }
+
+        Jongo jongo = new Jongo(db);
         
         Set<Annotation> qualifiers = point.getQualifiers();
         Collection col = (Collection) qualifiers.iterator().next();
