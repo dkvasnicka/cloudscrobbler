@@ -4,3 +4,6 @@
 *.NavData
 app/src/main/webapp/WEB-INF/lib/WEB-INF-lib-sources.jar
 /api/target/
+*.iml
+*.ipr
+*.iws

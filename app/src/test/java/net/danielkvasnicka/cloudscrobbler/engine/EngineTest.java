@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
  *
  * @author daniel
  */
-@RunWith(JeeunitRunner.class)
+//@RunWith(JeeunitRunner.class)
 public class EngineTest {
 
     @Inject
@@ -28,7 +28,7 @@ public class EngineTest {
     @Inject
     private ListenerRepository listenerRepository;
 
-    @Test
+    //@Test
     public final void testNewTracksEventObserver() throws Throwable {
         final Listener l = this.listenerRepository.findListener("smilelover");
 
